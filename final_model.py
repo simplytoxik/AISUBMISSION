@@ -1,20 +1,20 @@
-def aimodel():  
-    import pandas as pd
-    import numpy as np
-    from sklearn.model_selection import train_test_split
-    from sklearn.ensemble import RandomForestClassifier
-    from sklearn.preprocessing import LabelEncoder, StandardScaler
-    from sklearn.metrics import accuracy_score, classification_report
+ 
+import pandas as pd
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.metrics import accuracy_score, classification_report
 
 
-    def preprocess_blood_pressure(bp_column):#classifies blood pressure data into systolic and diastolic
+def preprocess_blood_pressure(bp_column):#classifies blood pressure data into systolic and diastolic
     
         systolic = bp_column.str.split('/', expand=True)[0].astype(int)
         diastolic = bp_column.str.split('/', expand=True)[1].astype(int)
         return systolic, diastolic
 
 
-    def load_and_preprocess_data(filepath):
+def load_and_preprocess_data(filepath):
 
         try:
             # Load dataset
@@ -47,7 +47,7 @@ def aimodel():
         return X, y, scaler, label_encoders
 
 
-    def train_model(X, y):
+def train_model(X, y):
         """
         Train a Random Forest model.
 
@@ -71,7 +71,7 @@ def aimodel():
         return model
 
 
-    def predict_diagnosis(model, scaler, label_encoders, age, gender, height, weight, systolic, diastolic):
+def predict_diagnosis(model, scaler, label_encoders, age, gender, height, weight, systolic, diastolic):
         """
         Predict diagnosis for a new patient.
 
@@ -105,7 +105,7 @@ def aimodel():
         return label_encoders['Diagnosis'].inverse_transform(prediction)[0]
 
 
-    def get_user_input():
+def get_user_input():
         """
         Collect user inputs with validation and return them.
         """
@@ -143,8 +143,7 @@ def aimodel():
             print(f"Input Error: {e}")
             return get_user_input()
 
-
-    def main():
+def main():
         # Filepath for the dataset
         filepath = 'riyal_data.csv'
 
@@ -161,7 +160,7 @@ def aimodel():
             print(f"\nPredicted Diagnosis: {diagnosis}")
         else:
             print("Prediction failed due to invalid inputs.")
-    return main()
+        return main()
 
 
 
